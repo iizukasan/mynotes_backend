@@ -7,6 +7,8 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+
+	"billiard_app_backend/handlers"
 )
 
 var db *gorm.DB
@@ -24,6 +26,8 @@ func main() {
 	}
 
 	db.AutoMigrate(&Note{})
+
+	e.GET("/health-check", handlers.HealthCheck)
 
 	e.GET("/notes", getNotes)
 	e.POST("/notes/new", createNote)
