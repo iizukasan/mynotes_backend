@@ -25,7 +25,9 @@ func main() {
 		e.Logger.Fatal(err)
 	}
 
-	db.AutoMigrate(&Note{})
+    if err := db.AutoMigrate(&Note{}); err != nil {
+        e.Logger.Fatal(err)
+    }
 
 	e.GET("/health-check", handlers.HealthCheck)
 
