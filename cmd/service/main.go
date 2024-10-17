@@ -29,5 +29,8 @@ func main() {
 
 	e.GET("/health-check", handlers.HealthCheck)
 
+	e.POST("/login", handlers.Login)
+	e.POST("/logout", handlers.Logout)
+
 	e.Logger.Fatal(e.Start(":3000"))
 }
